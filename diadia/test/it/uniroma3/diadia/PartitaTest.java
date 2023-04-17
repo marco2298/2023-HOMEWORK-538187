@@ -33,13 +33,13 @@ public class PartitaTest {
 	
 	@Test
 	public void testVintaSeStanzaCorrenteEVinente() {
-		this.partita.getLabirinto().setStanzaCorrente(this.partita.getLabirinto().getStanzaVincente());
+		this.partita.setStanzaCorrente(this.partita.getLabirinto().getStanzaVincente());
 		assertTrue(this.partita.vinta());
 	}
 	
 	@Test
 	public void testNonVintaSeStanzaCorrenteNonEVincente() {
-		this.partita.getLabirinto().setStanzaCorrente(new Stanza("NonVincente"));		
+		this.partita.setStanzaCorrente(new Stanza("NonVincente"));		
 		assertFalse(this.partita.vinta());
 	}
 	
@@ -50,7 +50,7 @@ public class PartitaTest {
 	
 	@Test
 	public void testFinitaSeVinta() {
-		this.partita.getLabirinto().setStanzaCorrente(this.partita.getLabirinto().getStanzaVincente());
+		this.partita.setStanzaCorrente(this.partita.getLabirinto().getStanzaVincente());
 		assertTrue(this.partita.isFinita());
 	}
 	

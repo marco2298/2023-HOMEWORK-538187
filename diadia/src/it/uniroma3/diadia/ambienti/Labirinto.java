@@ -3,8 +3,12 @@ import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 public class Labirinto {
 	
-	private Stanza stanzaCorrente;
+	private Stanza stanzaIniziale;
 	private Stanza stanzaVincente;
+	
+    public Labirinto() {
+		this.creaStanze();
+	}
 	
 	/**
 	 * Crea tutte le stanze e le porte di collegamento
@@ -41,7 +45,7 @@ public class Labirinto {
 		atrio.addAttrezzo(osso);
 
 		// il gioco comincia nell'atrio
-		stanzaCorrente = atrio;  
+		stanzaIniziale = atrio;  
 		stanzaVincente = biblioteca;
 	}
 
@@ -57,17 +61,12 @@ public class Labirinto {
 
 	/**
 	 * 
-	 * @return restituisce la stanza Corrente/Iniziale
+	 * @return restituisce la stanza Iniziale
 	 * */
 	
-	public Stanza getStanzaCorrente() {
-		return this.stanzaCorrente;
+	public Stanza getStanzaIniziale() {
+		return this.stanzaIniziale;
 	}
 	
-	/*Setter di stanzaCorrente*/
-	
-	public void setStanzaCorrente(Stanza stanzaCorrente) {
-		this.stanzaCorrente = stanzaCorrente;
-	}
 
 }

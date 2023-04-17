@@ -26,8 +26,8 @@ public class LabirintoTest {
 
 	@Test
 	public void testGetStanzaIniziale() {
-		assertNotNull(this.labirinto.getStanzaCorrente());
-		assertEquals("Atrio", this.labirinto.getStanzaCorrente().getNome());
+		assertNotNull(this.labirinto.getStanzaIniziale());
+		assertEquals("Atrio", this.labirinto.getStanzaIniziale().getNome());
 		
 	}
 
