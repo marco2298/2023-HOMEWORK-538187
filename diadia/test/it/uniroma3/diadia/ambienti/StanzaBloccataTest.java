@@ -67,17 +67,4 @@ public class StanzaBloccataTest {
 		assertNull(this.stanzaBloccata.getAttrezzo("inesistente"));
 	}
 	
-//	@Test
-//	public void testGetDescrizioneDirezioneSbloccata() {
-//		stanzaBloccata.addAttrezzo(a);
-//		assertEquals(stanzaBloccata.toString(), stanzaBloccata.getDescrizione());
-//	}
-//	
-//	@Test
-//	public void testGetDescrizioneDirezioneBloccata() {
-//		String e = "Stanza bloccata nella direzione: ovest"+"\nPrendi il grimaldello e posalo nella stanza";
-//		assertEquals(e, stanzaBloccata.getDescrizione());
-//		
-//	}
-
 }

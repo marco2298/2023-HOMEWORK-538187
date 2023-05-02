@@ -7,7 +7,7 @@ public class ComandoAiuto implements Comando {
 	
 	static final public String[] ELENCO_COMANDI = {"vai", "aiuto", "fine","prendi", "posa", "guarda"};
 	private IO io;
-	private final static String NOME = "aiuto";
+	public final static String NOME = "aiuto";
 	
 	/**
 	 * Comando "Aiuto".

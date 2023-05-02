@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import it.uniroma3.diadia.IOConsole;
 import it.uniroma3.diadia.Partita;
+import it.uniroma3.diadia.ambienti.Labirinto;
 import it.uniroma3.diadia.ambienti.Stanza;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 import it.uniroma3.diadia.giocatore.Borsa;
@@ -17,12 +18,13 @@ public class ComandoPosaTest {
 	private static final String ATTREZZO_DA_POSARE = "AttrezzoDaPosare";
 	private ComandoPosa comandoPosa;
 	private Partita partita;
+	Labirinto labirinto;
 	
 	@Before
 	public void setUp () throws Exception {
 		this.comandoPosa = new ComandoPosa();
 		this.comandoPosa.setIO(new IOConsole());
-		this.partita = new Partita();
+		this.partita = new Partita(labirinto);
 		Borsa borsa = partita.getGiocatore().getBorsa();
 		Attrezzo attrezzoNuovo = new Attrezzo(ATTREZZO_DA_POSARE, 1);
 		borsa.addAttrezzo(attrezzoNuovo);

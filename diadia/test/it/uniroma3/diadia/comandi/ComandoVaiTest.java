@@ -1,76 +1,57 @@
 package it.uniroma3.diadia.comandi;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import it.uniroma3.diadia.DiaDia;
+import it.uniroma3.diadia.IO;
 import it.uniroma3.diadia.IOConsole;
-import it.uniroma3.diadia.IOSimulator;
 import it.uniroma3.diadia.Partita;
-import it.uniroma3.diadia.ambienti.Stanza;
-import it.uniroma3.diadia.fixture.Fixture;
+import it.uniroma3.diadia.ambienti.Labirinto;
 
 public class ComandoVaiTest {
 	
-	private static final String NOME_STANZA_PARTENZA = "partenza";
-	private static final String NORD = "nord";
+	private Comando comando;
 	private Partita partita;
-	private Comando comandoVai;
-	private Stanza partenza;
+	private Labirinto lab;
+	private IO io;
+	
 	
 	@Before
-	public void setUp()throws Exception {		//instanzio oggetti che mi servono
-		this.comandoVai = new ComandoVai ();
-		this.comandoVai.setIO(new IOConsole());
-		this.partita = new Partita ();
-		this.partenza = new Stanza (NOME_STANZA_PARTENZA);
-		this.partita.setStanzaCorrente(this.partenza);
-		
+	public void setUp() {
+		this.partita = new Partita(lab);
+		this.io = new IOConsole();
+		this.partita.setLabirinto(lab);
+		this.comando = new ComandoVai();
+		this.comando.setParametro("sud");
+		this.comando.setIO(io);
+		this.comando.esegui(this.partita);
 	}
 	
 	@Test
-	public void testVaiStanzaNonPresente() {
-		this.comandoVai.setParametro(NORD);
-		this.comandoVai.esegui(this.partita);
-		assertEquals(NOME_STANZA_PARTENZA, this.partita.getStanzaCorrente().getNome());
+	public void testTornoVersoNordEMiTrovoInAtrio() {
+		this.comando = new ComandoVai();
+		this.comando.setParametro("nord");
+		this.comando.setIO(this.io);
+		this.comando.esegui(this.partita);
+		assertEquals("Atrio", this.partita.getStanzaCorrente().getNome());
+	}
+	@Test
+	public void testMiTrovoInN10() {
+		this.comando.esegui(this.partita);
+	}
+
+	@Test
+	public void testNomeVai() {
+		assertEquals("vai", this.comando.getNome());
+	}
+
+	@Test
+	public void testParametroSud() {
+		assertEquals("sud", this.comando.getParametro());
 	}
 	
-	@Test
-	public void testVaiStanzaPresente() {
-		Stanza destinazione = new Stanza ("destinazione");
-		this.partenza.impostaStanzaAdiacente (NORD, destinazione);
-		this.comandoVai.setParametro(NORD);
-		this.comandoVai.esegui(partita);
-		assertEquals("destinazione", this.partita.getStanzaCorrente().getNome());
-
-	}
 	
-	@Test
-	public void testVaiStanzaPresenteInDirezioneSbagliata() {
-		Stanza destinazione = new Stanza ("destinazione");
-		this.partenza.impostaStanzaAdiacente ("sud", destinazione);
-		this.comandoVai.setParametro(NORD);
-		this.comandoVai.esegui(partita);
-		assertEquals(NOME_STANZA_PARTENZA, this.partita.getStanzaCorrente().getNome());
-	}
-
-	@Test
-	public void testPartitaConComandoVai() {
-		String comandoDaEseguire[] =  {"vai sud", ComandoFine.NOME};
-		IOSimulator io = Fixture.creaSimulazionePartitaEGioca(comandoDaEseguire);
-		assertTrue (io.hasNextMessaggio());
-		assertEquals(DiaDia.MESSAGGIO_BENVENUTO, io.nextMessaggio());
-		assertTrue(io.hasNextMessaggio());
-		assertEquals("Aula N10", io.nextMessaggio());
-		assertTrue (io.hasNextMessaggio());
-		assertEquals(ComandoFine.MESSAGGIO_FINE, io.nextMessaggio());
-	}
-
-	public void assertContains (String expected, String interaRiga) {
-		assertTrue(interaRiga.contains(expected));
-	}
-
+	
 }

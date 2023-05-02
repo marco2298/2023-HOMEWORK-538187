@@ -22,7 +22,7 @@ public class StanzaBuiaTest {
 	
 	private static final String DESCRIZIONE_STANZA = "StanzaBuia\n"+
 			"Uscite: \n" +
-			"Attrezzi nella stanza: attrezzoLuceTest Peso: 1kg ";
+			"Attrezzi nella stanza: [attrezzoLuceTest Peso: 1kg] ";
 	
 	@Before
 	public void setUp () {
@@ -37,7 +37,7 @@ public class StanzaBuiaTest {
 	@Test
 	public void testGetDescrizioneConLuce() {
 		Fixture.creaAttrezzoEAggiungiAStanza (this.stanzaBuia,ATTREZZO_LUCE_TEST,1);
-		assertEquals(DESCRIZIONE_STANZA,this.stanzaBuia.getDescrizione());
+		assertEquals(DESCRIZIONE_STANZA,stanzaBuia.getDescrizione());
 	}
 	
 	@Test
